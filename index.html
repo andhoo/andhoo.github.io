@@ -1,1 +1,225 @@
-<b>Hello world!</b>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>André Hoogendoorn | Independent Software Developer</title>
+
+<style>
+/* ===== Base ===== */
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #0b0f14;
+    color: #e6edf3;
+    opacity: 0;
+    transition: opacity 0.8s ease-in;
+
+    /* Ultra subtle tech grid */
+    background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* ===== Header ===== */
+header {
+    padding: 100px 20px;
+    text-align: center;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeSlide 1s ease forwards;
+}
+
+.name {
+    position: relative;
+    display: inline-block;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.underline {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 2px;
+    width: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(88,166,255,0.0),
+        rgba(88,166,255,0.8),
+        rgba(88,166,255,0.0)
+    );
+    animation: expandLine 1.2s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #8b949e;
+}
+
+/* ===== Sections ===== */
+section {
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+/* ===== Cards ===== */
+.card {
+    background: #161b22;
+    padding: 22px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(15px);
+    opacity: 0;
+}
+
+.card.visible {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.6s ease;
+}
+
+.card:hover {
+    background: #1f2937;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+a {
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 50px;
+    color: #8b949e;
+    font-size: 14px;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeSlide {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes expandLine {
+    to {
+        width: 100%;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1 class="name">
+        André Hoogendoorn
+        <span class="underline"></span>
+    </h1>
+    <div class="subtitle">
+        Independent Software Developer
+    </div>
+</header>
+
+<section>
+    <h2>About</h2>
+    <p>
+        I design and build practical software systems focused on reliability,
+        automation and technical problem solving. My work spans financial
+        tooling, embedded systems and infrastructure control.
+    </p>
+</section>
+
+<section>
+    <h2>Areas of Work</h2>
+
+    <div class="card">
+        <strong>Automation Software</strong><br>
+        Rule-based systems and execution tools built in MQL5 and C++.
+    </div>
+
+    <div class="card">
+        <strong>Financial API Integration</strong><br>
+        Qt6 C++ applications integrating broker APIs for data processing and execution management.
+    </div>
+
+    <div class="card">
+        <strong>Embedded Systems</strong><br>
+        ESP32 / ESP-IDF based monitoring and control nodes.
+    </div>
+
+    <div class="card">
+        <strong>Infrastructure & Power Control</strong><br>
+        Intelligent UPS / no-break monitoring and automated shutdown solutions.
+    </div>
+
+</section>
+
+<section>
+    <h2>Links</h2>
+
+    <div class="card">
+        <strong>GitHub</strong><br>
+        <a href="https://github.com/andhoo" target="_blank">
+            github.com/andhoo
+        </a>
+    </div>
+
+    <div class="card">
+        <strong>Contact</strong><br>
+        <a href="#" onclick="location.href='mailto:' + 'lightups.job858' + '@' + 'simplelogin.com'">
+            lightups.job858@simplelogin.com
+        </a>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 André Hoogendoorn
+</footer>
+
+<script>
+window.addEventListener("load", function() {
+    document.body.classList.add("loaded");
+
+    const cards = document.querySelectorAll(".card");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+});
+</script>
+
+</body>
+</html>
