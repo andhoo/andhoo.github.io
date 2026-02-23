@@ -190,11 +190,17 @@ footer {
 
     <div class="card">
         <strong>Contact</strong><br>
-        <a href="#" onclick="location.href='mailto:' + 'lightups.job858' + '@' + 'simplelogin.com'">
+        <a id="emailLink" href="#">
             lightups.job858@simplelogin.com
         </a>
     </div>
 
+    <script>
+    document.getElementById("emailLink").addEventListener("click", function(e){
+        e.preventDefault();
+        window.location.href = "mailto:" + "lightups.job858" + "@" + "simplelogin.com";
+    });
+    </script>
 </section>
 
 <footer>
